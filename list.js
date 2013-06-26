@@ -30,7 +30,7 @@ List.prototype.add=function(obj){
 				comp=(this.comparer!==undefined)?
 					this.comparer.call(item.data, current.data):
 					item.compare(current.data);
-				if(comp===0){ // Item exists, return current
+				if(comp===1 || comp===-1){ // Item exists, return current
 					walk=false;
 					ret=current;
 				}
@@ -102,10 +102,10 @@ List.prototype.grep=function(fn){
 }
 List.prototype.forEach=function(cb, ctx){
 	var current=this.first;
-	var index=0;
+	var index=-1;
 	while(current!==null){
-		cb.call(ctx || current.data, current.data, index, this);
 		index++;
+		cb.call(ctx || current.data, current.data, index, this);
 		current=current.next;
 	}
 }
@@ -138,17 +138,34 @@ List.prototype._remove=function(item){
 		}
 	}
 }
+List.prototype.indexOf=function(fn){
+	var current=this.first;
+	var i=-1;
+	var pos=-1;
+	while(current!==null){
+		i++;
+		if(fn(current.data)){
+			pos=i;
+			current=null;
+		}
+		else{
+			current=current.next;
+		}
+	}
+	return pos;
+}
 List.prototype.removeAt=function(index){
+	var current=this.first;
 	var i=0;
 	while(current!==null){
 		if(i==index){
-			i++;
 			this._remove(current);
 			current=null;
 		}
 		else{
 			current=current.next;
 		}
+		i++;
 	}
 }
 var ListItem=function(){
