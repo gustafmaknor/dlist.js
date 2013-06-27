@@ -1,6 +1,6 @@
 list.js
 =======
-Linear list with insert sort.
+Linear list with insert sort and filtering.
 
   Usage
 ---------
