@@ -98,7 +98,7 @@ Returns an ```Array```of objects matching the grep function command.
 Example:
 ```
 var list=new List();
-//Code to dd bunch of objects to the list
+//Code to add bunch of objects to the list
 
 
 //grep objects where the property 'age' is less than 32
