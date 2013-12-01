@@ -1,4 +1,4 @@
-list.js
+dlist.js
 =======
 Linear list with insert sort and filtering.
 
